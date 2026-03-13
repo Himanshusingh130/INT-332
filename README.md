@@ -1,12 +1,94 @@
-# 🐳 Docker Projects & Commands
+# 🐳 Docker Commands & Projects Repository
 
+![Docker](https://img.shields.io/badge/Docker-Containerization-blue?logo=docker)
+![DevOps](https://img.shields.io/badge/DevOps-Practice-orange)
+![Linux](https://img.shields.io/badge/Linux-Compatible-green?logo=linux)
+![NodeJS](https://img.shields.io/badge/Node.js-App-brightgreen?logo=node.js)
+![Nginx](https://img.shields.io/badge/Nginx-WebServer-success?logo=nginx)
+
+This repository contains **Docker basic commands, container management commands, environment variables, volumes, and real Docker projects**.
+
+It is designed for **DevOps learning, Docker labs, and hands-on practice**.
 
 ---
 
+# 📂 Repository Structure
 
-# 📥 Basic Docker Commands
+```
+docker-projects/
+│
+├── README.md
+│
+├── basic-commands/
+│   └── docker_commands.md
+│
+├── nginx-docker-app/
+│   ├── index.html
+│   ├── default.conf
+│   └── Dockerfile
+│
+├── node-docker-app/
+│   ├── app.js
+│   ├── package.json
+│   └── Dockerfile
+│
+└── screenshots/
+    ├── 1_pull_images.png
+    ├── 2_docker_images.png
+    ├── 3_run_hello_world.png
+    ├── 4_run_ubuntu.png
+    ├── 5_run_nginx.png
+    └── 6_browser_output.png
+```
 
-## Pull Docker Images
+---
+
+# 📚 Table of Contents
+
+1. Check Docker Installation
+2. Basic Docker Commands
+3. Docker Run Options
+4. Environment Variables
+5. Port Mapping
+6. Container Lifecycle Commands
+7. Container Interaction Commands
+8. Docker Volumes
+9. Docker Practice Tasks
+10. Project 1 – Custom Nginx Docker App
+11. Project 2 – Node.js Docker App
+
+---
+
+# 1️⃣ Check Docker Installation
+
+```bash
+docker --version
+```
+
+Example output
+
+```
+Docker version 18.09.6
+```
+
+---
+
+# 2️⃣ Docker System Information
+
+```bash
+docker info
+```
+
+Displays:
+
+* Number of containers
+* Number of images
+* Storage driver
+* Docker server version
+
+---
+
+# 3️⃣ Pull Docker Images
 
 ```bash
 docker pull hello-world
@@ -33,7 +115,7 @@ docker pull golang
 
 ---
 
-## List Local Images
+# 4️⃣ List Docker Images
 
 ```bash
 docker images
@@ -41,24 +123,115 @@ docker images
 
 ---
 
-## Run Containers
+# 5️⃣ Run Docker Containers
 
-### Run Hello World
+Basic syntax
 
-```bash
-docker run hello-world
+```
+docker run [OPTIONS] IMAGE [COMMAND] [ARG]
 ```
 
-### Run Ubuntu Interactive Container
+Example
 
 ```bash
-docker run -it ubuntu
+docker run httpd echo "Hello World"
 ```
 
-### Run Nginx Web Server
+---
+
+# Docker Run Options
+
+| Option   | Description                    |
+| -------- | ------------------------------ |
+| `-it`    | Interactive mode               |
+| `-d`     | Detached (background) mode     |
+| `--name` | Container name                 |
+| `--rm`   | Remove container automatically |
+| `-p`     | Port mapping                   |
+| `-e`     | Environment variable           |
+| `-v`     | Mount volume                   |
+
+Example
 
 ```bash
-docker run -d -p 8080:80 nginx
+docker run --name my-container httpd echo "Hello World"
+```
+
+---
+
+# 6️⃣ Environment Variables in Docker
+
+Example:
+
+```bash
+docker run -e MY_VAR=value httpd env
+```
+
+Interactive example
+
+```bash
+docker run -it -e MY_NAME=Harpreet ubuntu bash
+```
+
+Check variable
+
+```bash
+echo $MY_NAME
+```
+
+---
+
+# Multiple Environment Variables
+
+```bash
+docker run -e APP_ENV=production -e APP_VERSION=1.0 nginx
+```
+
+---
+
+# MySQL Container with Environment Variables
+
+```bash
+docker run -d \
+-e MYSQL_ROOT_PASSWORD=root123 \
+-e MYSQL_DATABASE=college \
+-e MYSQL_USER=admin \
+-e MYSQL_PASSWORD=admin123 \
+mysql:8
+```
+
+---
+
+# Using `.env` File
+
+Create `.env`
+
+```
+DB_HOST=localhost
+DB_USER=root
+DB_PASS=secret
+```
+
+Run container
+
+```bash
+docker run --env-file .env myapp
+```
+
+---
+
+# 7️⃣ Port Mapping
+
+Syntax
+
+```
+docker run -p HOST_PORT:CONTAINER_PORT IMAGE
+```
+
+Example
+
+```bash
+docker run -p 8080:80 nginx
 ```
 
 Open browser
@@ -69,69 +242,167 @@ http://localhost:8080
 
 ---
 
-## Remove Unused Images
+# 8️⃣ Container Lifecycle Commands
+
+Run container
 
 ```bash
-docker image prune
+docker run -d -p 80:80 --name my_container nginx
+```
+
+Start container
+
+```bash
+docker start <container>
+```
+
+Stop container
+
+```bash
+docker stop <container>
+```
+
+Restart container
+
+```bash
+docker restart <container>
+```
+
+Pause container
+
+```bash
+docker pause <container>
+```
+
+Unpause container
+
+```bash
+docker unpause <container>
+```
+
+Kill container
+
+```bash
+docker kill <container>
+```
+
+Remove container
+
+```bash
+docker rm <container>
+```
+
+Remove stopped containers
+
+```bash
+docker container prune
+```
+
+---
+
+# 9️⃣ Listing Containers
+
+Running containers
+
+```bash
+docker ps
+```
+
+All containers
+
+```bash
+docker ps -a
+```
+
+---
+
+# 🔎 Container Interaction
+
+Execute command inside container
+
+```bash
+docker exec -it <container_id> bash
+```
+
+View logs
+
+```bash
+docker logs <container>
+```
+
+Follow logs
+
+```bash
+docker logs -f <container>
+```
+
+Copy files
+
+Container → Host
+
+```bash
+docker cp container:/file.txt /host
+```
+
+Host → Container
+
+```bash
+docker cp /host/file.txt container:/path
+```
+
+---
+
+# 📦 Docker Volumes
+
+Create volume
+
+```bash
+docker volume create mydata
+```
+
+List volumes
+
+```bash
+docker volume ls
+```
+
+Inspect volume
+
+```bash
+docker volume inspect mydata
+```
+
+Run container with volume
+
+```bash
+docker run -dit --name mycontainer -v mydata:/app/data ubuntu
+```
+
+Remove volume
+
+```bash
+docker volume rm mydata
 ```
 
 ---
 
 # 🌐 Project 1 — Custom Nginx Docker Application
 
-This project creates a **custom Nginx container serving a static HTML page**.
-
----
-
-## Step 1: Create Project Folder
+Create project
 
 ```bash
 mkdir nginx-app
 cd nginx-app
 ```
 
----
-
-## Step 2: Create HTML Page
-
-Create **index.html**
+Create HTML
 
 ```html
-<!DOCTYPE html>
-<html>
-<head>
-<title>Medium Level Docker App</title>
-</head>
-<body>
-
 <h1>Welcome to My Custom Docker Nginx App</h1>
 <p>This is a medium-level Docker project.</p>
-
-</body>
-</html>
 ```
 
----
-
-## Step 3: Create Nginx Configuration
-
-Create **default.conf**
-
-```nginx
-server {
-    listen 80;
-    server_name localhost;
-
-    location / {
-        root /usr/share/nginx/html;
-        index index.html;
-    }
-}
-```
-
----
-
-## Step 4: Create Dockerfile
+Create Dockerfile
 
 ```dockerfile
 FROM nginx:alpine
@@ -142,50 +413,36 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 ```
 
----
-
-## Step 5: Build Docker Image
+Build image
 
 ```bash
 docker build -t custom-nginx:v1 .
 ```
 
----
-
-## Step 6: Run Container
+Run container
 
 ```bash
 docker run -d -p 8080:80 --name nginx-container custom-nginx:v1
 ```
 
----
-
-## Step 7: Open Browser
+Open browser
 
 ```
 http://localhost:8080
 ```
 
-You should see the **custom Nginx page**.
-
 ---
 
 # ⚡ Project 2 — Node.js Docker Application
 
-This project runs a **simple Node.js Express server inside Docker**.
-
----
-
-## Step 1: Create Project Folder
+Create project
 
 ```bash
 mkdir node-app
 cd node-app
 ```
 
----
-
-## Step 2: Create app.js
+app.js
 
 ```javascript
 const express = require("express");
@@ -200,24 +457,7 @@ app.listen(3000, "0.0.0.0", () => {
 });
 ```
 
----
-
-## Step 3: Create package.json
-
-```json
-{
-  "name": "node-docker-app",
-  "version": "1.0.0",
-  "main": "app.js",
-  "dependencies": {
-    "express": "^4.18.2"
-  }
-}
-```
-
----
-
-## Step 4: Create Dockerfile
+Dockerfile
 
 ```dockerfile
 FROM node:18-alpine
@@ -234,39 +474,25 @@ EXPOSE 3000
 CMD ["node", "app.js"]
 ```
 
----
-
-## Step 5: Build Image
+Build image
 
 ```bash
 docker build -t node-demo:v1 .
 ```
 
----
-
-## Step 6: Run Container
+Run container
 
 ```bash
 docker run -d -p 3000:3000 --name node-container node-demo:v1
 ```
 
----
-
-## Step 7: Verify Running Containers
-
-```bash
-docker ps
-```
-
----
-
-## Step 8: Open Browser
+Open browser
 
 ```
 http://localhost:3000
 ```
 
-Output:
+Output
 
 ```
 Docker Node App Running!
@@ -274,4 +500,38 @@ Docker Node App Running!
 
 ---
 
+# 📸 Screenshots
 
+Pull images
+
+![Pull Images](screenshots/1_pull_images.png)
+
+Docker images
+
+![Images](screenshots/2_docker_images.png)
+
+Hello world
+
+![Hello](screenshots/3_run_hello_world.png)
+
+Ubuntu container
+
+![Ubuntu](screenshots/4_run_ubuntu.png)
+
+Nginx container
+
+![Nginx](screenshots/5_run_nginx.png)
+
+Browser output
+
+![Browser](screenshots/6_browser_output.png)
+
+---
+
+# 👨‍💻 Author
+
+Himanshu Singh
+
+---
+
+⭐ If you found this repository useful, please **star the project**.
