@@ -500,34 +500,6 @@ Docker Node App Running!
 
 ---
 
-# 📸 Screenshots
-
-Pull images
-
-![Pull Images](screenshots/1_pull_images.png)
-
-Docker images
-
-![Images](screenshots/2_docker_images.png)
-
-Hello world
-
-![Hello](screenshots/3_run_hello_world.png)
-
-Ubuntu container
-
-![Ubuntu](screenshots/4_run_ubuntu.png)
-
-Nginx container
-
-![Nginx](screenshots/5_run_nginx.png)
-
-Browser output
-
-![Browser](screenshots/6_browser_output.png)
-
----
-
 # 👨‍💻 Author
 
 Himanshu Singh
