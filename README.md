@@ -1,20 +1,37 @@
-# 🐳 Docker Commands & Projects Repository
+🚀 Docker Commands & DevOps Projects Repository
 
-![Docker](https://img.shields.io/badge/Docker-Containerization-blue?logo=docker)
-![DevOps](https://img.shields.io/badge/DevOps-Practice-orange)
-![Linux](https://img.shields.io/badge/Linux-Compatible-green?logo=linux)
-![NodeJS](https://img.shields.io/badge/Node.js-App-brightgreen?logo=node.js)
-![Nginx](https://img.shields.io/badge/Nginx-WebServer-success?logo=nginx)
 
-This repository contains **Docker basic commands, container management commands, environment variables, volumes, and real Docker projects**.
 
-It is designed for **DevOps learning, Docker labs, and hands-on practice**.
 
----
 
-# 📂 Repository Structure
 
-```
+
+
+
+
+📌 Overview
+
+This repository contains:
+
+Docker basic commands
+Docker container management
+Environment variables
+Docker networking
+Docker volumes
+Real Docker projects
+Nginx deployment
+Node.js containerization
+DevOps hands-on practice
+
+This project is designed for:
+
+DevOps beginners
+Docker practice
+College practicals
+Internship preparation
+CI/CD learning
+Cloud & deployment basics
+📂 Repository Structure
 docker-projects/
 │
 ├── README.md
@@ -39,413 +56,276 @@ docker-projects/
     ├── 4_run_ubuntu.png
     ├── 5_run_nginx.png
     └── 6_browser_output.png
-```
+🐳 What is Docker?
 
----
+Docker is a containerization platform used to package applications with all dependencies into lightweight containers.
 
-# 📚 Table of Contents
+Advantages of Docker:
 
-1. Check Docker Installation
-2. Basic Docker Commands
-3. Docker Run Options
-4. Environment Variables
-5. Port Mapping
-6. Container Lifecycle Commands
-7. Container Interaction Commands
-8. Docker Volumes
-9. Docker Practice Tasks
-10. Project 1 – Custom Nginx Docker App
-11. Project 2 – Node.js Docker App
+Fast deployment
+Lightweight containers
+Platform independent
+Easy scalability
+Simplifies DevOps workflow
+Better resource utilization
+⚙️ Prerequisites
 
----
+Before starting:
 
-# 1️⃣ Check Docker Installation
+Install:
 
-```bash
+Docker Desktop
+Git
+VS Code
+
+Supported Platforms:
+
+Windows
+Linux
+macOS
+🔧 Install Docker
+Windows
+
+Download Docker Desktop:
+
+👉 https://www.docker.com/products/docker-desktop/
+
+Verify installation:
+
 docker --version
-```
 
-Example output
+Example output:
 
-```
-Docker version 18.09.6
-```
-
----
-
-# 2️⃣ Docker System Information
-
-```bash
+Docker version 26.0.0
+📚 Docker Basic Commands
+1️⃣ Docker Version
+docker --version
+2️⃣ Docker Information
 docker info
-```
 
 Displays:
 
-* Number of containers
-* Number of images
-* Storage driver
-* Docker server version
-
----
-
-# 3️⃣ Pull Docker Images
-
-```bash
-docker pull hello-world
-docker pull ubuntu
-docker pull ubuntu:22.04
-docker pull alpine
-docker pull busybox
+Docker server info
+Number of containers
+Number of images
+Storage driver
+CPU & memory details
+3️⃣ Pull Docker Images
 docker pull nginx
-docker pull nginx:alpine
-docker pull httpd
+docker pull ubuntu
+docker pull alpine
+docker pull node
 docker pull mysql
 docker pull postgres
-docker pull mongo
 docker pull redis
-docker pull python
-docker pull python:3.9
-docker pull node
-docker pull node:18
-docker pull openjdk
-docker pull tomcat
-docker pull php
-docker pull golang
-```
-
----
-
-# 4️⃣ List Docker Images
-
-```bash
+docker pull mongo
+4️⃣ List Docker Images
 docker images
-```
+5️⃣ Remove Docker Images
+docker rmi nginx
 
----
+Force remove:
 
-# 5️⃣ Run Docker Containers
+docker rmi -f nginx
+🧱 Docker Containers
+Run Container
+docker run nginx
 
-Basic syntax
+Detached mode:
 
-```
-docker run [OPTIONS] IMAGE [COMMAND] [ARG]
-```
+docker run -d nginx
 
-Example
+Interactive mode:
 
-```bash
-docker run httpd echo "Hello World"
-```
+docker run -it ubuntu bash
 
----
+Container with custom name:
 
-# Docker Run Options
+docker run --name my-nginx nginx
+📌 Docker Run Options
+Option	Description
+-d	Detached mode
+-it	Interactive terminal
+--name	Custom container name
+-p	Port mapping
+-e	Environment variables
+-v	Mount volume
+--rm	Remove container automatically
+🌐 Port Mapping
 
-| Option   | Description                    |
-| -------- | ------------------------------ |
-| `-it`    | Interactive mode               |
-| `-d`     | Detached (background) mode     |
-| `--name` | Container name                 |
-| `--rm`   | Remove container automatically |
-| `-p`     | Port mapping                   |
-| `-e`     | Environment variable           |
-| `-v`     | Mount volume                   |
+Syntax:
 
-Example
-
-```bash
-docker run --name my-container httpd echo "Hello World"
-```
-
----
-
-# 6️⃣ Environment Variables in Docker
+docker run -p HOST_PORT:CONTAINER_PORT IMAGE
 
 Example:
 
-```bash
-docker run -e MY_VAR=value httpd env
-```
+docker run -d -p 8080:80 nginx
 
-Interactive example
+Open in browser:
 
-```bash
-docker run -it -e MY_NAME=Harpreet ubuntu bash
-```
+http://localhost:8080
+🔐 Environment Variables
 
-Check variable
+Single variable:
 
-```bash
-echo $MY_NAME
-```
+docker run -e APP_ENV=production nginx
 
----
+Multiple variables:
 
-# Multiple Environment Variables
+docker run \
+-e APP_ENV=production \
+-e APP_VERSION=1.0 \
+nginx
+📄 Using .env File
 
-```bash
-docker run -e APP_ENV=production -e APP_VERSION=1.0 nginx
-```
+Create .env
 
----
-
-# MySQL Container with Environment Variables
-
-```bash
-docker run -d \
--e MYSQL_ROOT_PASSWORD=root123 \
--e MYSQL_DATABASE=college \
--e MYSQL_USER=admin \
--e MYSQL_PASSWORD=admin123 \
-mysql:8
-```
-
----
-
-# Using `.env` File
-
-Create `.env`
-
-```
 DB_HOST=localhost
 DB_USER=root
 DB_PASS=secret
-```
 
-Run container
+Run:
 
-```bash
 docker run --env-file .env myapp
-```
+📦 Docker Volumes
 
----
+Create volume:
 
-# 7️⃣ Port Mapping
+docker volume create mydata
 
-Syntax
+List volumes:
 
-```
-docker run -p HOST_PORT:CONTAINER_PORT IMAGE
-```
+docker volume ls
 
-Example
+Inspect volume:
 
-```bash
-docker run -p 8080:80 nginx
-```
+docker volume inspect mydata
 
-Open browser
+Use volume:
 
-```
-http://localhost:8080
-```
+docker run -dit -v mydata:/app/data ubuntu
 
----
+Remove volume:
 
-# 8️⃣ Container Lifecycle Commands
+docker volume rm mydata
+🔄 Container Lifecycle Commands
 
-Run container
+Start container:
 
-```bash
-docker run -d -p 80:80 --name my_container nginx
-```
-
-Start container
-
-```bash
 docker start <container>
-```
 
-Stop container
+Stop container:
 
-```bash
 docker stop <container>
-```
 
-Restart container
+Restart container:
 
-```bash
 docker restart <container>
-```
 
-Pause container
+Pause container:
 
-```bash
 docker pause <container>
-```
 
-Unpause container
+Unpause:
 
-```bash
 docker unpause <container>
-```
 
-Kill container
+Kill container:
 
-```bash
 docker kill <container>
-```
 
-Remove container
+Remove container:
 
-```bash
 docker rm <container>
-```
+📋 List Containers
 
-Remove stopped containers
+Running containers:
 
-```bash
-docker container prune
-```
-
----
-
-# 9️⃣ Listing Containers
-
-Running containers
-
-```bash
 docker ps
-```
 
-All containers
+All containers:
 
-```bash
 docker ps -a
-```
+🔎 Container Interaction
 
----
+Execute command:
 
-# 🔎 Container Interaction
+docker exec -it <container> bash
 
-Execute command inside container
+View logs:
 
-```bash
-docker exec -it <container_id> bash
-```
-
-View logs
-
-```bash
 docker logs <container>
-```
 
-Follow logs
+Follow logs:
 
-```bash
 docker logs -f <container>
-```
-
-Copy files
+📁 Copy Files
 
 Container → Host
 
-```bash
-docker cp container:/file.txt /host
-```
+docker cp container:/file.txt /host/path
 
 Host → Container
 
-```bash
 docker cp /host/file.txt container:/path
-```
+🧹 Cleanup Commands
 
----
+Remove stopped containers:
 
-# 📦 Docker Volumes
+docker container prune
 
-Create volume
+Remove unused images:
 
-```bash
-docker volume create mydata
-```
+docker image prune
 
-List volumes
+Remove unused volumes:
 
-```bash
-docker volume ls
-```
+docker volume prune
 
-Inspect volume
+Remove everything unused:
 
-```bash
-docker volume inspect mydata
-```
-
-Run container with volume
-
-```bash
-docker run -dit --name mycontainer -v mydata:/app/data ubuntu
-```
-
-Remove volume
-
-```bash
-docker volume rm mydata
-```
-
----
-
-# 🌐 Project 1 — Custom Nginx Docker Application
-
-Create project
-
-```bash
-mkdir nginx-app
-cd nginx-app
-```
-
-Create HTML
-
-```html
-<h1>Welcome to My Custom Docker Nginx App</h1>
-<p>This is a medium-level Docker project.</p>
-```
-
-Create Dockerfile
-
-```dockerfile
+docker system prune -a
+🌐 Project 1 — Custom Nginx Docker Application
+📂 Project Structure
+nginx-docker-app/
+│
+├── index.html
+├── default.conf
+└── Dockerfile
+📄 index.html
+<h1>Welcome to My Docker Nginx App</h1>
+<p>Docker Project Running Successfully</p>
+📄 Dockerfile
 FROM nginx:alpine
 
 COPY index.html /usr/share/nginx/html/index.html
 COPY default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
-```
-
-Build image
-
-```bash
+🔨 Build Docker Image
 docker build -t custom-nginx:v1 .
-```
-
-Run container
-
-```bash
+▶️ Run Container
 docker run -d -p 8080:80 --name nginx-container custom-nginx:v1
-```
+🌍 Browser Output
 
-Open browser
+Open:
 
-```
 http://localhost:8080
-```
 
----
+Expected output:
 
-# ⚡ Project 2 — Node.js Docker Application
-
-Create project
-
-```bash
-mkdir node-app
-cd node-app
-```
-
-app.js
-
-```javascript
+Welcome to My Docker Nginx App
+Docker Project Running Successfully
+⚡ Project 2 — Node.js Docker Application
+📂 Project Structure
+node-docker-app/
+│
+├── app.js
+├── package.json
+└── Dockerfile
+📄 app.js
 const express = require("express");
+
 const app = express();
 
 app.get("/", (req, res) => {
@@ -455,16 +335,22 @@ app.get("/", (req, res) => {
 app.listen(3000, "0.0.0.0", () => {
   console.log("Server running on port 3000");
 });
-```
-
-Dockerfile
-
-```dockerfile
+📄 package.json
+{
+  "name": "docker-node-app",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
+📄 Dockerfile
 FROM node:18-alpine
 
 WORKDIR /app
 
 COPY package.json .
+
 RUN npm install
 
 COPY app.js .
@@ -472,37 +358,62 @@ COPY app.js .
 EXPOSE 3000
 
 CMD ["node", "app.js"]
-```
-
-Build image
-
-```bash
+🔨 Build Image
 docker build -t node-demo:v1 .
-```
-
-Run container
-
-```bash
+▶️ Run Container
 docker run -d -p 3000:3000 --name node-container node-demo:v1
-```
+🌍 Browser Output
 
-Open browser
+Open:
 
-```
 http://localhost:3000
-```
 
-Output
+Expected output:
 
-```
 Docker Node App Running!
-```
+🛠️ Common Docker Errors & Fixes
+Error	Solution
+Docker daemon not running	Start Docker Desktop
+Port already allocated	Change host port
+Permission denied	Run terminal as administrator
+Image not found	Pull image first
+Container exited	Check logs
+📈 Learning Outcomes
 
----
+After completing this repository, you will learn:
 
-# 👨‍💻 Author
+Docker fundamentals
+Container lifecycle
+Image management
+Docker networking
+Docker volumes
+Container deployment
+Nginx setup
+Node.js containerization
+DevOps basics
+🚀 Future Improvements
+Docker Compose
+Kubernetes integration
+Jenkins CI/CD
+GitHub Actions
+Multi-container apps
+Monitoring with Prometheus & Grafana
+🤝 Contributing
 
+Contributions are welcome.
+
+Steps:
+
+Fork repository
+Create branch
+Commit changes
+Push code
+Create pull request
+📜 License
+
+This project is licensed under the MIT License.
+
+👨‍💻 Author
 Himanshu Singh
 
----
-
+DevOps | Docker | Cloud | Full Stack Learning
