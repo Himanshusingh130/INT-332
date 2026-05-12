@@ -906,32 +906,8 @@ Developer → GitHub → Jenkins → Docker Build → Deployment
 
 ---
 
-# 📜 License
-
-This repository is for educational purposes only.
-
----
-
 # 👨‍💻 Author
 
 ## Himanshu Singh
 
 DevOps | Docker | Cloud | CI/CD
-
----
-
-# ⭐ Support
-
-If this repository helped you:
-
-- Star the repository
-- Fork the project
-- Share with friends
-
----
-
-# 📬 Contact
-
-GitHub: Your GitHub Username  
-LinkedIn: Your LinkedIn Profile  
-Email: your-email@example.com
