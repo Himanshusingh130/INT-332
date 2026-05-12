@@ -1,672 +1,937 @@
-# 🚀 Docker Commands & DevOps Projects Repository
+# 📚 INTT 332 — DevOps, Virtualization & Configuration Management
 
+![DevOps](https://img.shields.io/badge/DevOps-Automation-orange)
 ![Docker](https://img.shields.io/badge/Docker-Containerization-blue?logo=docker)
-![DevOps](https://img.shields.io/badge/DevOps-Practice-orange)
-![Linux](https://img.shields.io/badge/Linux-Compatible-green?logo=linux)
-![NodeJS](https://img.shields.io/badge/Node.js-App-brightgreen?logo=node.js)
-![Nginx](https://img.shields.io/badge/Nginx-WebServer-success?logo=nginx)
+![Jenkins](https://img.shields.io/badge/Jenkins-CI/CD-red?logo=jenkins)
+![Linux](https://img.shields.io/badge/Linux-Administration-green?logo=linux)
+![Cloud](https://img.shields.io/badge/Cloud-Computing-blue)
 
 ---
 
-# 📌 Overview
+# 📌 Course Overview
+
+INTT 332 focuses on modern DevOps practices, virtualization technologies, cloud computing, containerization, automation, and deployment pipelines.
+
+The course helps students understand:
+
+- Software Development Life Cycle
+- DevOps Methodology
+- Linux Administration
+- Docker Containerization
+- Jenkins CI/CD
+- Cloud Deployment
+- Configuration Management
+- Monitoring & Automation
 
 This repository contains:
 
-- Docker basic commands
-- Docker container management
-- Environment variables
-- Docker networking
-- Docker volumes
-- Real Docker projects
-- Nginx deployment
-- Node.js containerization
-- DevOps hands-on practice
+- Detailed Unit Notes
+- Linux Commands
+- Docker Commands
+- Jenkins Pipelines
+- Practical Labs
+- Mini Projects
+- Real-Time DevOps Projects
+- Deployment Examples
 
-This project is designed for:
+---
 
-- DevOps beginners
-- Docker practice
-- College practicals
-- Internship preparation
-- CI/CD learning
-- Cloud & deployment basics
+# 🎯 Course Learning Outcomes
+
+After completing this course students will be able to:
+
+✅ Understand DevOps lifecycle  
+✅ Work with Linux operating systems  
+✅ Create Docker containers  
+✅ Build CI/CD pipelines  
+✅ Configure Jenkins automation  
+✅ Deploy applications on cloud  
+✅ Automate infrastructure  
+✅ Monitor applications and services  
+✅ Build real-world DevOps projects  
 
 ---
 
 # 📂 Repository Structure
 
 ```bash
-docker-projects/
+INTT-332/
 │
 ├── README.md
 │
-├── basic-commands/
-│   └── docker_commands.md
+├── UNIT-1-DevOps-Virtualization/
 │
-├── nginx-docker-app/
-│   ├── index.html
-│   ├── default.conf
-│   └── Dockerfile
+├── UNIT-2-Linux-Configuration-Management/
 │
-├── node-docker-app/
-│   ├── app.js
-│   ├── package.json
-│   └── Dockerfile
+├── UNIT-3-Docker-Containerization/
 │
-└── screenshots/
-    ├── 1_pull_images.png
-    ├── 2_docker_images.png
-    ├── 3_run_hello_world.png
-    ├── 4_run_ubuntu.png
-    ├── 5_run_nginx.png
-    └── 6_browser_output.png
+├── UNIT-4-Jenkins-CI-CD/
+│
+├── UNIT-5-Cloud-Monitoring-Deployment/
+│
+├── Practical-Labs/
+│
+├── Projects/
+│
+├── Notes/
+│
+└── Screenshots/
 ```
 
 ---
 
-# 🐳 What is Docker?
-
-Docker is a containerization platform used to package applications with all dependencies into lightweight containers.
-
-## Advantages of Docker
-
-- Fast deployment
-- Lightweight containers
-- Platform independent
-- Easy scalability
-- Simplifies DevOps workflow
-- Better resource utilization
+# 📖 UNIT 1 — Introduction to DevOps & Virtualization
 
 ---
 
-# ⚙️ Prerequisites
+# 🔹 Introduction to DevOps
 
-Before starting install:
+DevOps is a combination of:
 
-- Docker Desktop
-- Git
-- VS Code
-
-Supported Platforms:
-
-- Windows
-- Linux
-- macOS
-
----
-
-# 🔧 Install Docker
-
-## Windows
-
-Download Docker Desktop:
-
-https://www.docker.com/products/docker-desktop/
-
-Verify installation:
-
-```bash
-docker --version
+```text
+Development + Operations
 ```
 
-Example output:
+It is used to automate software development, testing, deployment, and monitoring.
 
-```bash
-Docker version 26.0.0
+---
+
+# 🔹 Goals of DevOps
+
+- Faster software delivery
+- Automation
+- Continuous deployment
+- Better collaboration
+- Reduced errors
+- Faster recovery
+
+---
+
+# 🔹 DevOps Lifecycle
+
+```text
+Plan → Develop → Build → Test → Release → Deploy → Operate → Monitor
 ```
 
 ---
 
-# 📚 Docker Basic Commands
+# 🔹 Software Development Life Cycle (SDLC)
 
-## 1️⃣ Docker Version
+SDLC defines the process of software development.
 
-```bash
-docker --version
-```
+## SDLC Phases
 
----
-
-## 2️⃣ Docker Information
-
-```bash
-docker info
-```
-
-Displays:
-
-- Docker server info
-- Number of containers
-- Number of images
-- Storage driver
-- CPU & memory details
+1. Requirement Gathering
+2. System Design
+3. Development
+4. Testing
+5. Deployment
+6. Maintenance
 
 ---
 
-## 3️⃣ Pull Docker Images
+# 🔹 Agile Methodology
 
-```bash
-docker pull nginx
-docker pull ubuntu
-docker pull alpine
-docker pull node
-docker pull mysql
-docker pull postgres
-docker pull redis
-docker pull mongo
-```
+Agile is an iterative software development methodology.
+
+## Features of Agile
+
+- Continuous improvement
+- Faster delivery
+- Sprint-based development
+- Team collaboration
 
 ---
 
-## 4️⃣ List Docker Images
+# 🔹 Continuous Integration (CI)
 
-```bash
-docker images
-```
+CI automatically integrates code changes into a shared repository.
 
----
+### Advantages
 
-## 5️⃣ Remove Docker Images
-
-```bash
-docker rmi nginx
-```
-
-Force remove:
-
-```bash
-docker rmi -f nginx
-```
+- Detects bugs early
+- Improves software quality
+- Reduces integration problems
 
 ---
 
-# 🧱 Docker Containers
+# 🔹 Continuous Deployment (CD)
 
-## Run Container
-
-```bash
-docker run nginx
-```
-
-Detached mode:
-
-```bash
-docker run -d nginx
-```
-
-Interactive mode:
-
-```bash
-docker run -it ubuntu bash
-```
-
-Container with custom name:
-
-```bash
-docker run --name my-nginx nginx
-```
+CD automatically deploys tested applications to production.
 
 ---
 
-# 📌 Docker Run Options
+# 🔹 Virtualization
 
-| Option | Description |
+Virtualization allows multiple operating systems to run on a single physical machine.
+
+---
+
+# 🔹 Types of Virtualization
+
+| Type | Description |
 |---|---|
-| `-d` | Detached mode |
-| `-it` | Interactive terminal |
-| `--name` | Custom container name |
-| `-p` | Port mapping |
-| `-e` | Environment variables |
-| `-v` | Mount volume |
-| `--rm` | Remove container automatically |
+| Hardware Virtualization | Creates virtual machines |
+| Server Virtualization | Divides physical servers |
+| Storage Virtualization | Combines storage devices |
+| Network Virtualization | Creates virtual networks |
 
 ---
 
-# 🌐 Port Mapping
+# 🔹 Hypervisors
 
-Syntax:
+A hypervisor manages virtual machines.
 
-```bash
-docker run -p HOST_PORT:CONTAINER_PORT IMAGE
-```
+## Types
 
-Example:
+| Type | Description |
+|---|---|
+| Type 1 | Runs directly on hardware |
+| Type 2 | Runs on host OS |
 
-```bash
-docker run -d -p 8080:80 nginx
-```
+Examples:
 
-Open in browser:
+- VMware
+- VirtualBox
+- Hyper-V
 
-```bash
-http://localhost:8080
+---
+
+# 🧪 Practicals — UNIT 1
+
+## Practical 1 — Install VirtualBox
+
+### Steps
+
+1. Download VirtualBox
+2. Install software
+3. Create virtual machine
+4. Install Ubuntu Linux
+
+---
+
+## Practical 2 — Create Ubuntu Virtual Machine
+
+### Requirements
+
+- Ubuntu ISO
+- 4GB RAM
+- 20GB Storage
+
+---
+
+# 🚀 Mini Project — UNIT 1
+
+## Project: Create Linux Virtual Machine
+
+### Objective
+
+Create and configure Ubuntu VM using VirtualBox.
+
+### Features
+
+- Linux installation
+- User creation
+- Network configuration
+- Shared folders
+
+---
+
+# 📖 UNIT 2 — Linux & Configuration Management
+
+---
+
+# 🔹 Introduction to Linux
+
+Linux is an open-source operating system widely used in DevOps and cloud computing.
+
+---
+
+# 🔹 Linux File System
+
+```text
+/
+├── home
+├── etc
+├── var
+├── bin
+├── usr
+└── tmp
 ```
 
 ---
 
-# 🔐 Environment Variables
+# 🔹 Basic Linux Commands
 
-Single variable:
-
-```bash
-docker run -e APP_ENV=production nginx
-```
-
-Multiple variables:
+## Check Current Directory
 
 ```bash
-docker run \
--e APP_ENV=production \
--e APP_VERSION=1.0 \
-nginx
+pwd
 ```
 
 ---
 
-# 📄 Using .env File
+## List Files
 
-Create `.env`
+```bash
+ls
+```
 
-```env
-DB_HOST=localhost
-DB_USER=root
-DB_PASS=secret
+---
+
+## Change Directory
+
+```bash
+cd folder_name
+```
+
+---
+
+## Create File
+
+```bash
+touch file.txt
+```
+
+---
+
+## Remove File
+
+```bash
+rm file.txt
+```
+
+---
+
+# 🔹 User Management
+
+## Create User
+
+```bash
+sudo adduser username
+```
+
+---
+
+## Change Password
+
+```bash
+passwd username
+```
+
+---
+
+# 🔹 Permission Management
+
+## Change Permissions
+
+```bash
+chmod 777 file.txt
+```
+
+---
+
+# 🔹 Process Management
+
+## Display Processes
+
+```bash
+ps aux
+```
+
+---
+
+## Kill Process
+
+```bash
+kill PID
+```
+
+---
+
+# 🔹 Shell Scripting
+
+Shell scripting automates Linux tasks.
+
+---
+
+# 🔹 Sample Shell Script
+
+```bash
+#!/bin/bash
+
+echo "Welcome to DevOps"
+date
 ```
 
 Run:
 
 ```bash
-docker run --env-file .env myapp
+chmod +x script.sh
+./script.sh
 ```
 
 ---
 
-# 📦 Docker Volumes
+# 🔹 Configuration Management
 
-Create volume:
+Configuration management automates server setup and maintenance.
 
-```bash
-docker volume create mydata
-```
+---
 
-List volumes:
+# 🔹 Infrastructure as Code (IaC)
 
-```bash
-docker volume ls
-```
+Infrastructure is managed using code.
 
-Inspect volume:
+Examples:
 
-```bash
-docker volume inspect mydata
-```
+- Ansible
+- Terraform
+- Puppet
+- Chef
 
-Use volume:
+---
 
-```bash
-docker run -dit -v mydata:/app/data ubuntu
-```
+# 🔹 Ansible Basics
 
-Remove volume:
+## Install Ansible
 
 ```bash
-docker volume rm mydata
+sudo apt install ansible
 ```
 
 ---
 
-# 🔄 Container Lifecycle Commands
-
-Start container:
+## Check Version
 
 ```bash
-docker start <container>
-```
-
-Stop container:
-
-```bash
-docker stop <container>
-```
-
-Restart container:
-
-```bash
-docker restart <container>
-```
-
-Pause container:
-
-```bash
-docker pause <container>
-```
-
-Unpause:
-
-```bash
-docker unpause <container>
-```
-
-Kill container:
-
-```bash
-docker kill <container>
-```
-
-Remove container:
-
-```bash
-docker rm <container>
+ansible --version
 ```
 
 ---
 
-# 📋 List Containers
+# 🧪 Practicals — UNIT 2
 
-Running containers:
+## Practical 1 — Linux Commands Practice
+
+Commands:
+
+```bash
+ls
+pwd
+mkdir
+touch
+cp
+mv
+rm
+```
+
+---
+
+## Practical 2 — Shell Scripting
+
+Create automation script.
+
+---
+
+## Practical 3 — User Management
+
+Create multiple users and groups.
+
+---
+
+# 🚀 Mini Project — UNIT 2
+
+## Project: Linux Server Administration
+
+### Tasks
+
+- User management
+- File permissions
+- Shell scripts
+- Process monitoring
+
+---
+
+# 📖 UNIT 3 — Docker & Containerization
+
+---
+
+# 🔹 Introduction to Docker
+
+Docker is a containerization platform.
+
+Containers package:
+
+- Application
+- Libraries
+- Dependencies
+
+---
+
+# 🔹 Docker Architecture
+
+```text
+Docker Client → Docker Daemon → Docker Images → Containers
+```
+
+---
+
+# 🔹 Docker Images
+
+Docker images are templates used to create containers.
+
+---
+
+# 🔹 Docker Containers
+
+Containers are running instances of Docker images.
+
+---
+
+# 🔹 Docker Installation
+
+## Windows
+
+Install Docker Desktop.
+
+Verify:
+
+```bash
+docker --version
+```
+
+---
+
+# 🔹 Docker Commands
+
+## Pull Image
+
+```bash
+docker pull nginx
+```
+
+---
+
+## Run Container
+
+```bash
+docker run -d -p 8080:80 nginx
+```
+
+---
+
+## List Containers
 
 ```bash
 docker ps
 ```
 
-All containers:
+---
+
+## Stop Container
 
 ```bash
-docker ps -a
+docker stop container_id
 ```
 
 ---
 
-# 🔎 Container Interaction
-
-Execute command:
+## Remove Container
 
 ```bash
-docker exec -it <container> bash
-```
-
-View logs:
-
-```bash
-docker logs <container>
-```
-
-Follow logs:
-
-```bash
-docker logs -f <container>
+docker rm container_id
 ```
 
 ---
 
-# 📁 Copy Files
+# 🔹 Dockerfile
 
-Container → Host
-
-```bash
-docker cp container:/file.txt /host/path
-```
-
-Host → Container
-
-```bash
-docker cp /host/file.txt container:/path
-```
+Dockerfile automates image creation.
 
 ---
 
-# 🧹 Cleanup Commands
-
-Remove stopped containers:
-
-```bash
-docker container prune
-```
-
-Remove unused images:
-
-```bash
-docker image prune
-```
-
-Remove unused volumes:
-
-```bash
-docker volume prune
-```
-
-Remove everything unused:
-
-```bash
-docker system prune -a
-```
-
----
-
-# 🌐 Project 1 — Custom Nginx Docker Application
-
-## 📂 Project Structure
-
-```bash
-nginx-docker-app/
-│
-├── index.html
-├── default.conf
-└── Dockerfile
-```
-
----
-
-## 📄 index.html
-
-```html
-<h1>Welcome to My Docker Nginx App</h1>
-<p>Docker Project Running Successfully</p>
-```
-
----
-
-## 📄 Dockerfile
+# 🔹 Dockerfile Example
 
 ```dockerfile
 FROM nginx:alpine
 
-COPY index.html /usr/share/nginx/html/index.html
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY . /usr/share/nginx/html
 
 EXPOSE 80
 ```
 
 ---
 
-## 🔨 Build Docker Image
+# 🔹 Docker Volumes
+
+Volumes store persistent data.
+
+---
+
+# 🔹 Docker Networking
+
+Allows communication between containers.
+
+---
+
+# 🔹 Docker Compose
+
+Manages multi-container applications.
+
+---
+
+# 🧪 Practicals — UNIT 3
+
+## Practical 1 — Install Docker
+
+---
+
+## Practical 2 — Run Nginx Container
 
 ```bash
-docker build -t custom-nginx:v1 .
+docker run -d -p 8080:80 nginx
 ```
 
 ---
 
-## ▶️ Run Container
+## Practical 3 — Create Dockerfile
+
+---
+
+## Practical 4 — Build Docker Image
 
 ```bash
-docker run -d -p 8080:80 --name nginx-container custom-nginx:v1
+docker build -t myapp .
 ```
 
 ---
 
-## 🌍 Browser Output
+# 🚀 Mini Projects — UNIT 3
 
-Open:
+---
 
-```bash
-http://localhost:8080
-```
+# 🔹 Project 1 — Docker Nginx Website
 
-Expected output:
+### Features
+
+- Static website deployment
+- Nginx container
+- Port mapping
+
+---
+
+# 🔹 Project 2 — Node.js Docker App
+
+### Features
+
+- Node.js application
+- Dockerized backend
+- Container deployment
+
+---
+
+# 📖 UNIT 4 — Jenkins & CI/CD Pipeline
+
+---
+
+# 🔹 Introduction to Jenkins
+
+Jenkins is an automation server used for CI/CD.
+
+---
+
+# 🔹 Jenkins Features
+
+- Automated builds
+- Automated testing
+- Deployment automation
+- Plugin support
+
+---
+
+# 🔹 Jenkins Architecture
 
 ```text
-Welcome to My Docker Nginx App
-Docker Project Running Successfully
+Developer → GitHub → Jenkins → Build → Test → Deploy
 ```
 
 ---
 
-# ⚡ Project 2 — Node.js Docker Application
+# 🔹 Jenkins Installation
 
-## 📂 Project Structure
+## Windows
 
-```bash
-node-docker-app/
-│
-├── app.js
-├── package.json
-└── Dockerfile
-```
+Download Jenkins WAR file or installer.
 
 ---
 
-## 📄 app.js
+# 🔹 Jenkins Pipeline
 
-```javascript
-const express = require("express");
-
-const app = express();
-
-app.get("/", (req, res) => {
-  res.send("Docker Node App Running!");
-});
-
-app.listen(3000, "0.0.0.0", () => {
-  console.log("Server running on port 3000");
-});
-```
+Pipelines automate build and deployment processes.
 
 ---
 
-## 📄 package.json
+# 🔹 Jenkinsfile Example
 
-```json
-{
-  "name": "docker-node-app",
-  "version": "1.0.0",
-  "main": "app.js",
-  "dependencies": {
-    "express": "^4.18.2"
-  }
+```groovy
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Build') {
+            steps {
+                echo 'Building Application'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Testing Application'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying Application'
+            }
+        }
+    }
 }
 ```
 
 ---
 
-## 📄 Dockerfile
+# 🔹 GitHub Integration
 
-```dockerfile
-FROM node:18-alpine
-
-WORKDIR /app
-
-COPY package.json .
-
-RUN npm install
-
-COPY app.js .
-
-EXPOSE 3000
-
-CMD ["node", "app.js"]
-```
+Jenkins integrates with GitHub repositories.
 
 ---
 
-## 🔨 Build Image
+# 🔹 Jenkins + Docker Integration
 
-```bash
-docker build -t node-demo:v1 .
-```
+Jenkins can automatically build Docker images.
 
 ---
 
-## ▶️ Run Container
+# 🧪 Practicals — UNIT 4
 
-```bash
-docker run -d -p 3000:3000 --name node-container node-demo:v1
-```
+## Practical 1 — Install Jenkins
 
 ---
 
-## 🌍 Browser Output
+## Practical 2 — Create Jenkins Job
 
-Open:
+---
 
-```bash
-http://localhost:3000
-```
+## Practical 3 — Connect GitHub Repository
 
-Expected output:
+---
+
+## Practical 4 — Create CI/CD Pipeline
+
+---
+
+# 🚀 Mini Projects — UNIT 4
+
+## Project: CI/CD Pipeline using Jenkins & Docker
+
+### Features
+
+- GitHub integration
+- Automatic builds
+- Docker image creation
+- Deployment automation
+
+---
+
+# 📖 UNIT 5 — Cloud, Monitoring & Deployment
+
+---
+
+# 🔹 Cloud Computing
+
+Cloud computing provides services over the internet.
+
+---
+
+# 🔹 Cloud Models
+
+| Model | Description |
+|---|---|
+| IaaS | Infrastructure as a Service |
+| PaaS | Platform as a Service |
+| SaaS | Software as a Service |
+
+---
+
+# 🔹 AWS Basics
+
+Amazon Web Services provides cloud services like:
+
+- EC2
+- S3
+- IAM
+- RDS
+
+---
+
+# 🔹 Monitoring Tools
+
+## Prometheus
+
+Used for monitoring systems.
+
+---
+
+## Grafana
+
+Used for data visualization.
+
+---
+
+## Splunk
+
+Used for log monitoring.
+
+---
+
+# 🔹 Deployment Strategies
+
+- Blue-Green Deployment
+- Rolling Deployment
+- Canary Deployment
+
+---
+
+# 🔹 DevOps Security
+
+Security practices in DevOps.
+
+Examples:
+
+- Secure credentials
+- Access control
+- Vulnerability scanning
+
+---
+
+# 🧪 Practicals — UNIT 5
+
+## Practical 1 — AWS EC2 Setup
+
+---
+
+## Practical 2 — Install Prometheus
+
+---
+
+## Practical 3 — Install Grafana
+
+---
+
+## Practical 4 — Monitor Docker Containers
+
+---
+
+# 🚀 Final Projects
+
+---
+
+# 🔹 Project 1 — Complete DevOps CI/CD Pipeline
+
+## Technologies
+
+- GitHub
+- Jenkins
+- Docker
+- Nginx
+
+## Workflow
 
 ```text
-Docker Node App Running!
+Developer → GitHub → Jenkins → Docker Build → Deployment
 ```
 
 ---
 
-# 🛠️ Common Docker Errors & Fixes
+# 🔹 Project 2 — Dockerized Node.js Application
 
-| Error | Solution |
+## Features
+
+- Node.js backend
+- Docker container
+- Port mapping
+- Nginx reverse proxy
+
+---
+
+# 🔹 Project 3 — Linux Server Monitoring System
+
+## Features
+
+- CPU monitoring
+- Memory monitoring
+- Process tracking
+- Log analysis
+
+---
+
+# 🛠️ Tools Used
+
+| Tool | Purpose |
 |---|---|
-| Docker daemon not running | Start Docker Desktop |
-| Port already allocated | Change host port |
-| Permission denied | Run terminal as administrator |
-| Image not found | Pull image first |
-| Container exited | Check logs |
+| Docker | Containerization |
+| Jenkins | CI/CD |
+| GitHub | Version Control |
+| Linux | Server Administration |
+| AWS | Cloud Deployment |
+| Prometheus | Monitoring |
+| Grafana | Visualization |
+| Ansible | Automation |
 
 ---
 
-# 📈 Learning Outcomes
+# 📈 Practical Skills Gained
 
-After completing this repository, you will learn:
-
-- Docker fundamentals
-- Container lifecycle
-- Image management
-- Docker networking
-- Docker volumes
-- Container deployment
-- Nginx setup
-- Node.js containerization
-- DevOps basics
+- Linux Administration
+- Shell Scripting
+- Docker Management
+- Jenkins Automation
+- CI/CD Pipeline Creation
+- Cloud Deployment
+- Infrastructure Automation
+- Monitoring & Logging
 
 ---
 
-# 🚀 Future Improvements
+# 📜 License
 
-- Docker Compose
-- Kubernetes integration
-- Jenkins CI/CD
-- GitHub Actions
-- Multi-container apps
-- Monitoring with Prometheus & Grafana
+This repository is for educational purposes only.
 
 ---
-
-# 🤝 Contributing
-
-Contributions are welcome.
-
-## Steps
-
-1. Fork repository
-2. Create branch
-3. Commit changes
-4. Push code
-5. Create pull request
-
----
-
 
 # 👨‍💻 Author
 
 ## Himanshu Singh
 
-DevOps | Docker | Cloud | Full Stack Learning
+DevOps | Docker | Cloud | CI/CD
+
+---
+
+# ⭐ Support
+
+If this repository helped you:
+
+- Star the repository
+- Fork the project
+- Share with friends
+
+---
+
+# 📬 Contact
+
+GitHub: Your GitHub Username  
+LinkedIn: Your LinkedIn Profile  
+Email: your-email@example.com
